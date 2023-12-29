@@ -1,0 +1,23 @@
+<section class="book_section layout_padding">
+    <div class="container"  style="margin-top: -4rem;">
+        <div style="text-align:center;">
+            <h1>Top Rated</h1>
+          </div><br>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-4" *ngFor="let movie of movies">
+        <div class="card">
+          <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }} Poster">
+          <div class="card-body">
+            <h5 class="card-title">{{ movie.title }}</h5>
+            <ng-container *ngIf="loginService.getLoginStatus(); else loginMessage">
+              <a [routerLink]="['/details', movie.id]" class="btn btn-primary">More Details</a>
+            </ng-container>
+            <ng-template #loginMessage>
+              <a [routerLink]="['/login']" class="btn btn-primary">Connect to see More Details</a>
+            </ng-template>          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div></section>           

@@ -1,0 +1,46 @@
+<section class="book_section layout_padding">
+    <div class="container">
+        <div style="text-align:center;">
+            <h1>Login</h1>
+          </div><br>
+          <div class="row justify-content-center">
+            <div class="col-md-6">
+              <div class="form_container">
+                <!-- <form [FormGroup]="loginForm">
+                  <div>
+                    <input type="text" class="form-control" placeholder="Username" name="username"formControlName="username">
+                  </div>
+                  <div>
+                    <input type="password" class="form-control" placeholder="Password" name="username"formControlName="password">
+                  </div>
+                  <div class="btn_box" style="text-align: center;">
+                    <button type="submit" (click)="login()">Login</button>
+                  </div>
+                </form> -->
+                <form [formGroup]="loginForm">
+                  <div class="user-box">
+                    <input type="text" class="form-control" name="username" formControlName="username" placeholder="Username">
+                    <div *ngIf="loginForm.get('username')?.errors?.['required'] && loginForm.get('username')?.touched">
+                      Username is required.
+                    </div>
+                  </div>
+                  <div class="user-box">
+                    <input type="password" class="form-control" name="password" formControlName="password" placeholder="Password">
+                    <div *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched">
+                      Password is required.
+                    </div>
+                  </div>
+                  <div style="text-align: center;">
+                    <button type="submit" (click)="login()">Login</button>
+                    <div *ngIf="error" style="color: red;">{{ error }}</div>
+                  </div>
+                </form>
+                
+                
+              </div>
+            </div>
+          </div>
+          
+    </div>
+  </section>
+  

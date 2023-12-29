@@ -1,0 +1,50 @@
+<section class="slider_section d-flex justify-content-center align-items-center">
+    <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-md-7 col-lg-6">
+                <div class="detail-box text-center"> <!-- Added text-center for centering text -->
+                  <h1>Welcome to Movies</h1>
+                  <p>Movies is your gateway to a world of cinematic exploration. Discover your favorite movies, TV shows, and much more.</p>
+                  <div class="btn-box">
+                    <ng-container *ngIf="loginService.getLoginStatus(); else loginMessage">
+                      <a [routerLink]="['/films']" class="btn btn-primary">Explore Movies </a>
+                    </ng-container>
+                    <ng-template #loginMessage>
+                      <a [routerLink]="['/login']" class="btn btn-primary"> Log in to Explore Movies </a>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-md-7 col-lg-6">
+                <div class="detail-box text-center"> <!-- Added text-center for centering text -->
+                  <h1>About Movies</h1>
+                  <p>Movies is dedicated to providing comprehensive information about movies and TV shows through an intuitive interface.</p>
+                  <div class="btn-box">
+                    <a href="/about" class="btn1">About Us</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="container d-flex justify-content-center align-items-center">
+        <ol class="carousel-indicators">
+          <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
+          <li data-target="#customCarousel1" data-slide-to="1"></li>
+        </ol>
+      </div>
+      
+    </div>
+  </section>
+  

@@ -1,0 +1,12 @@
+input:hover{
+   transform: scale(1.1); /* Increase size on hover */
+}
+
+.i:hover{
+   transform: scale(1.3); /* Increase size on hover */
+}
+
+
+button:hover{
+    transform: scale(1.1); /* Increase size on hover */
+ }

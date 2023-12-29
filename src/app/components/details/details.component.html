@@ -1,0 +1,103 @@
+<div class="movie-details">
+  <br><br>
+  <div class="top-section">
+    <div class="card">
+      <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" alt="{{ movie.title }}" class="movie-poster">
+  
+      <span style="text-align: center; margin: 1rem ;">{{ movie.vote_average }}/10</span><br>
+        <div class="star-container"  style=" margin-bottom: 1rem ; text-align: center;">
+          <span   *ngFor="let star of getStars(); let i = index" class="star" [class.rated-star]="i < getAverageRating()">
+            <i class="fa-solid fa-star"></i>
+          </span>
+        </div>
+
+       
+           
+            
+
+      </div>
+    
+ 
+    
+    <div class="movie-info">
+      <h1 style="font-weight:bold; font-size: 3rem;">{{ movie.title }}</h1>
+      <p class="overview">{{ movie.overview }}</p>
+    
+      <div class="movies">
+        <div class="info">
+          <h2>Genres</h2>
+          <ul>
+            <li *ngFor="let genre of movie.genres">
+              {{ genre.name }}
+            </li>
+          </ul>
+        </div>
+        <div class="info">
+          <h2>Language</h2>
+          <p>English</p>
+        </div>
+        <div class="info">
+          <h2>Release Date</h2>
+          <p >{{ movie.release_date }}</p>
+        </div>
+      </div>
+
+      <h2 style="text-align: center; color :wheat"> {{movie.tagline}}</h2>
+      <div class="actions">
+        <br><br>
+        <i class="fas fa-play-circle" (click)="showVideo = !showVideo" id="video"></i>
+        
+        <i class="fa-regular fa-heart" *ngIf="!favorite" (click)="addToFavorites(movie.id,true)"></i>
+        <i class="fa-solid fa-heart"  id="heart" *ngIf="favorite" (click)="addToFavorites(movie.id,false)"></i>
+
+        <i class="fa-solid fa-list-check"  *ngIf="isinwatch" (click)="addwachlist(movie.id,false)" id="list"></i>
+        <i class="fa-solid fa-circle-plus" *ngIf="!isinwatch"  (click)="addwachlist(movie.id,true)"   (mouseenter)="showMessage = true"  (mouseleave)="showMessage = false"></i>
+        <span style="color:wheat; margin-left: 2rem ;"  *ngIf="showMessage">add to watch list </span>
+   
+      </div>
+      
+
+      <div class="video-container" *ngIf="showVideo">
+        <iframe [src]="getSafeVideoUrl()" frameborder="0" allowfullscreen autoplay ></iframe>
+      </div>
+      
+     
+    </div>
+  </div>
+<br>
+  <div class="cast">
+    <h2 style="font-weight:bold; font-size: 3rem; text-align: center;">Cast</h2><br>
+    <ul>
+      <ng-container *ngFor="let actor of cast; let i = index">
+        <li [hidden]="i >= 12 && !showAllCast">
+          <img src="https://image.tmdb.org/t/p/w200/{{ actor.profile_path }}" alt="" class="actor-image">
+          <p class="character">{{ actor.character }}</p>
+          <p>{{ actor.name }}</p>
+        </li>
+      </ng-container>
+    </ul>
+    
+  </div><div class="button">
+
+    <button  class="btn btn-primary" (click)="toggleShowAllCast()">Show {{ showAllCast ? 'Less' : 'More ...  ' }} </button>
+  </div>
+
+<!-- Display recommended movies --><br><br>
+<div *ngIf="recommendedMovies && recommendedMovies.length > 0">
+  <h2 style="text-align: center;">Recommended Movies</h2>
+  <div class="recommended-movies">
+    <div *ngFor="let recommendedMovie of recommendedMovies">
+      <!-- Display recommended movie details here -->
+      <p>{{ recommendedMovie.title }}</p>
+      <img [src]="'https://image.tmdb.org/t/p/w500/' + recommendedMovie.poster_path" alt="{{ recommendedMovie.title }} Poster">
+      <!-- Add more details as needed -->
+    </div>
+  </div>
+</div>
+
+
+
+
+  
+  <!-- Add more sections for additional details -->
+</div>
